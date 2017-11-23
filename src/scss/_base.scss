@@ -1,0 +1,22 @@
+body {
+  font: 400 16px/18px Helvetica, 'Open Sans', Arial, sans-serif;
+  color: #333333;
+}
+
+header {
+  border: 5px solid $blue;
+  padding: 5px 10px;
+  text-align: center;
+  font-size: 34px;
+}
+
+figcaption {
+  display: flex;
+  justify-content: space-around;
+}
+
+figure {
+  border: 2px solid $green-btn-d;
+  padding: 15px;
+  box-shadow: 1px 1px 7px 0px rgba(0,0,0,0.5);
+}

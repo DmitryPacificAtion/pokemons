@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+				content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="./css/styles.css">
+	<title>Document</title>
+</head>
+<body>
+<div class="l-wrapper">
+	<header><h1>Pokedex</h1></header>
+	<figcaption>
+		<figure>
+			<div class="preview"><img src="https://vignette.wikia.nocookie.net/pokemon/images/1/13/007Squirtle_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105230449" alt="Pokemon 0" width="120" height="120"></div>
+			<!-- /.preview --><h2 class="title">Pokemon title</h2>
+			<!-- /.title -->
+			<button class="type green-btn">Gross</button>
+			<!-- /.type -->
+			<div class="like"><a href="#"><img src="img/like-black.svg" width="32" height="auto" alt="Like"></a></div>
+			<!-- /.like -->
+		</figure>
+		<figure>
+			<div class="preview"><img src="https://vignette.wikia.nocookie.net/pokemon/images/1/13/007Squirtle_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105230449" alt="Pokemon 0" width="120" height="120"></div>
+			<!-- /.preview --><h2 class="title">Pokemon title</h2>
+			<!-- /.title -->
+			<button class="type green-btn">Gross</button>
+			<!-- /.type -->
+			<div class="like"><a href="#"><img src="img/like-black.svg" width="32" height="auto" alt="Like"></a></div>
+			<!-- /.like -->
+		</figure>
+	</figcaption>
+	<aside>
+
+	</aside>
+</div>
+<!-- /.wrapper -->
+<script>
+    var elem = document.querySelectorAll('.like>a>img');
+
+elem.forEach(function(item) {
+    item.addEventListener('mouseover', function(){
+        console.log(item.checked);
+
+        this.setAttribute('src', 'img/like-red.svg')
+    });
+    item.addEventListener('mouseout', function(){
+        this.setAttribute('src', 'img/like-black.svg')
+    });
+
+    item.addEventListener('click', function(){
+        this.setAttribute('src', 'img/like-black.svg')
+    });
+
+});
+</script>
+</body>
+</html>
+

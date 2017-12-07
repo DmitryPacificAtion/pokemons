@@ -1,0 +1,24 @@
+header {
+  border: 5px solid $blue;
+  font-size: 34px;
+  margin: 0 auto;
+  max-width: 640px;
+  padding: 5px 10px;
+  text-align: center;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 800px) {
+  header {
+    font-size: 26px;
+    padding: 0 5px;
+    margin: 0 0 0 1.5%;
+    width: 44%;
+  }
+}
+@media screen and (max-width: 510px) {
+  header {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+}

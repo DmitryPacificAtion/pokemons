@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "watch": "webpack --watch",
     "start": "webpack-dev-server --content-base dist/ --inline --hot"
   },
   "keywords": [],
@@ -14,22 +14,13 @@
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "bootstrap": "^4.0.0-beta",
-    "jquery": "^3.2.1",
-    "popper.js": "^1.12.5"
+    "babel-preset-react": "^6.24.1"
   },
   "devDependencies": {
-    "browser-sync": "^2.18.13",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^4.0.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-imagemin": "^3.3.0",
-    "gulp-sass": "^3.1.0",
-    "gulp-watch": "^4.3.11",
     "node-sass": "^4.5.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -37,6 +28,7 @@
     "resolve-url-loader": "^2.1.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
+    "svg-path-loader": "0.0.4",
     "url-loader": "^0.5.9",
     "webpack": "^3.4.1",
     "webpack-dev-server": "^2.9.4"

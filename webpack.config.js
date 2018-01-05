@@ -8,10 +8,23 @@ module.exports = {
     },
     output: {
         filename: 'bundle.js',
-        path: __dirname + '/dist/js'
+        path: __dirname + '/dist'
+    },
+    watchOptions: {
+        aggregateTimeout: 300,
+        poll: 1000
     },
     module: {
-        rules: [
+        loaders: [
+            {
+                test: /\.jsx?$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                query: {
+                    presets: ['es2015', 'react'],
+                    plugins: ['transform-class-properties', 'transform-object-rest-spread']
+                }
+            },
             {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
@@ -19,27 +32,32 @@ module.exports = {
                     use: ['css-loader', 'sass-loader']
                 })
             },
- /*           {
-                test: /\.svg$/,
-                loader: 'svg-path-loader',
-            },*/
             {
-                test: /\.jsx?/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                }
+                test: /\.json$/,
+                loader: 'json-loader'
             },
-            { test: /\.(woff2?|svg)$/, loader: 'url-loader?limit=10000' },
-            { test: /\.(ttf|eot|png|jpg|gif)$/, loader: 'file-loader' }
+            {
+                test: /\.(ttf|svg|eot|png|jpg|gif)$/,
+                loader: 'file-loader'
+            },
+
         ]
     },
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         compress: false,
         port: 3000,
-        inline: true,
-        hot: true
+        disableHostCheck: true,
+        historyApiFallback: true,
+        open: true
+        // proxy: {
+        //     '/#': {
+        //         target: 'http://192.168.5.196/v1/login',
+        //         changeOrigin: true,
+        //         secure: false
+        //     }
+        // },
+        // headers: {"Access-Control-Allow-Origin": "*", "Access-Control-Allow-Credentials": "true"}
     },
     plugins: [
         new ExtractTextPlugin('style.css', {allChunks: true})

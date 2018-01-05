@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './PokemonContainer.scss';
 import './common.js';
-
+import redLike from './like-red.svg';
 class PokemonContainer extends Component {
     render() {
         return (
@@ -36,7 +36,7 @@ class PokemonItem extends Component {
                 <button className="type green-btn">Grass</button>
                 <div className="like">
                     <a href="#">
-                        <img src="img/like-black.svg" width="32" height="auto"
+                        <img src={redLike} width="32" height="auto"
                              alt="Like"/>
                     </a>
                 </div>

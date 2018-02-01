@@ -2,4 +2,3 @@ node_modules
 dist/*
 !/dist/*.html
 .idea
-package-lock.json

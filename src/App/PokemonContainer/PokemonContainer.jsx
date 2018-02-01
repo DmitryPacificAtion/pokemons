@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './PokemonContainer.scss';
-import './common.js';
+import '../Utilities/common.js';
 import redLike from './like-red.svg';
 class PokemonContainer extends Component {
     render() {

@@ -20,3 +20,5 @@ elem.forEach(function (item) {
         }
     });
 });
+
+export default elem;

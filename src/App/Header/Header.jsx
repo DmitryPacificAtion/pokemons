@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-
+// import '../ColorVariables.scss';
+import './Header.scss';
 class Header extends Component {
     render() {
         return (

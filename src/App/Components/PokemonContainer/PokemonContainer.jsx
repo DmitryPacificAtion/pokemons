@@ -2,7 +2,11 @@ import React, {Component} from 'react';
 import './PokemonContainer.scss';
 import '../Utilities/common.js';
 import redLike from './like-red.svg';
+import auth from '../Utilities/Authenticate.js';
 class PokemonContainer extends Component {
+    onLoadMore = () => {
+        auth.getData()
+        };
     render() {
         return (
             <figcaption>
@@ -17,7 +21,7 @@ class PokemonContainer extends Component {
                     <PokemonItem/>
                     <PokemonItem/>
                 </div>
-                <button className="preloader">Load More</button>
+                <button className="preloader" type="button" onClick={this.onLoadMore}>Load More</button>
             </figcaption>
         );
     }

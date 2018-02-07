@@ -1,24 +1,19 @@
 import React, {Component} from 'react';
 import './PokemonContainer.scss';
-import '../Utilities/common.js';
 import redLike from './like-red.svg';
-import auth from '../Utilities/Authenticate.js';
+import blackLike from './like-black.svg';
+import PokemonInfo from '../../Components/PokemonInfo/PokemonInfo.jsx';
+
+
 class PokemonContainer extends Component {
-    onLoadMore = () => {
-        auth.getData()
-        };
+    onLoadMore = dispatch => {
+        dispatch()
+    };
+
     render() {
         return (
             <figcaption>
                 <div className="figure-wrapper">
-                    <PokemonItem/>
-                    <PokemonItem/>
-                    <PokemonItem/>
-                    <PokemonItem/>
-                    <PokemonItem/>
-                    <PokemonItem/>
-                    <PokemonItem/>
-                    <PokemonItem/>
                     <PokemonItem/>
                 </div>
                 <button className="preloader" type="button" onClick={this.onLoadMore}>Load More</button>
@@ -28,7 +23,27 @@ class PokemonContainer extends Component {
 }
 
 class PokemonItem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isFavorite: false,
+            selected: false
+        }
+    }
+
+    hoverHeart = (flag) => {
+        if (!this.state.selected)
+            this.setState({isFavorite: flag});
+    };
+    selectItem = (e) => {
+        e.preventDefault();
+        this.setState({selected: !this.state.selected});
+    };
     render() {
+        let heart = blackLike;
+        if (this.state.isFavorite) {
+            heart = redLike;
+        }
         return (
             <figure>
                 <div className="preview">
@@ -40,7 +55,10 @@ class PokemonItem extends Component {
                 <button className="type green-btn">Grass</button>
                 <div className="like">
                     <a href="#">
-                        <img src={redLike} width="32" height="auto"
+                        <img src={heart}
+                             onMouseOver={() => this.hoverHeart(true)} onMouseOut={() => this.hoverHeart(false)}
+                             onClick={this.selectItem}
+                             width="32" height="auto"
                              alt="Like"/>
                     </a>
                 </div>

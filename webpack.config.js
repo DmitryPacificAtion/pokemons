@@ -46,7 +46,7 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         compress: false,
-        port: 3000,
+        port: 3001,
         host: "127.0.0.1",
         disableHostCheck: true,
         historyApiFallback: true,

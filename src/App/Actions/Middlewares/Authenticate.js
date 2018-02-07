@@ -10,7 +10,7 @@ class Authenticate {
         };
 
     };
-    getData = () => {
+    sendRequest = () => {
         fetch(this.URI, this.initializeRequest())
             .then(data => {
                 return data.json()

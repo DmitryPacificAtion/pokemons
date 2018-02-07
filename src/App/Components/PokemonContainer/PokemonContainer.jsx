@@ -26,26 +26,30 @@ class PokemonItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isFavorite: false,
-            selected: false
+            isHovered: false,
+            isSelected: false
         }
     }
 
     hoverHeart = (flag) => {
-        if (!this.state.selected)
-            this.setState({isFavorite: flag});
+        if (!this.state.isSelected)
+            this.setState({isHovered: flag});
     };
     selectItem = (e) => {
         e.preventDefault();
-        this.setState({selected: !this.state.selected});
+        this.setState({isSelected: !this.state.isSelected });
+        if (this.state.isSelected) {
+            console.log();
+            this.setState({isHovered: false});
+        }
     };
     render() {
         let heart = blackLike;
-        if (this.state.isFavorite) {
+        if (this.state.isHovered) {
             heart = redLike;
         }
         return (
-            <figure>
+            <figure className="pokemon-item">
                 <div className="preview">
                     <img
                         src="https://vignette.wikia.nocookie.net/pokemon/images/1/13/007Squirtle_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105230449"
@@ -57,7 +61,7 @@ class PokemonItem extends Component {
                     <a href="#">
                         <img src={heart}
                              onMouseOver={() => this.hoverHeart(true)} onMouseOut={() => this.hoverHeart(false)}
-                             onClick={this.selectItem}
+                             onMouseDown={this.selectItem}
                              width="32" height="auto"
                              alt="Like"/>
                     </a>

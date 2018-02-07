@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
 
-import {FAVORITE_POKEMON} from '../Actions/actions';
+import {IS_FAVORITE_POKEMON} from '../Actions/actions';
 
 const initialState = {
-    isFavorite: false
+    isSelected: false
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case FAVORITE_POKEMON:
-            console.log(state.isFavorite);
-            return [...state, {isFavorite: !action.isFavorite}];
+        case IS_FAVORITE_POKEMON:
+            console.log(state.isSelected);
+            return [...state, {isSelected: !action.isSelected}];
         default:
             return state;
     }

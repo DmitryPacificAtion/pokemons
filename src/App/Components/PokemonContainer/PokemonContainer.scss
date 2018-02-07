@@ -32,6 +32,12 @@ button.type {
 }
 .like {
   padding-top: 10px;
+  img:active {
+    border: 1px solid #333333;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 2px;
+  }
 }
 .figure-wrapper {
   display: flex;

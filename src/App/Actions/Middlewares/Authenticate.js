@@ -1,8 +1,7 @@
 class Authenticate {
     URI = 'https://pokeapi.co/api/v2/';
-    pokemons = {};
     initializeRequest = () => {
-        const headers = new Headers({'Content-Type': 'text/xml'});
+        const headers = new Headers({'Content-Type': 'application/json'});
         return {
             method: 'GET',
             headers: headers,
@@ -10,22 +9,17 @@ class Authenticate {
         };
 
     };
-    sendRequest = () => {
+    getData = () => {
         fetch(this.URI, this.initializeRequest())
             .then(data => {
-                return data.json()
-            })
-            .then(data => {
-                this.pokemons = data;
+                console.log('0', data);
                 return data;
             })
             .catch(error => {
+                console.log('2');
                throw new Error('Failed to fetch: ' + error);
             });
     };
-    showData = () => {
-        console.log('I have: ', this.pokemons)
-    }
 }
 
 const auth = new Authenticate();

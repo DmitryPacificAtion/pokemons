@@ -2,54 +2,47 @@ import React, {Component} from 'react';
 import './PokemonContainer.scss';
 import redLike from './like-red.svg';
 import blackLike from './like-black.svg';
+import {onLoadingAction, selectAction, fetchingAction} from "../../Actions/actions";
 import PokemonInfo from '../../Components/PokemonInfo/PokemonInfo.jsx';
+import {connect} from "react-redux";
+import Spinner from "../Spinner/Spinner.jsx";
 
 
 class PokemonContainer extends Component {
-    onLoadMore = dispatch => {
-        dispatch()
-    };
-
     render() {
+        let loading = this.props.isLoading
+            ? <Spinner/>
+            : <button className="preloader" type="button" onClick={this.props.fetchContent}>Load More</button>
         return (
             <figcaption>
                 <div className="figure-wrapper">
-                    <PokemonItem/>
+                    <PokemonCard selectItem={this.props.selectItem} isSelected={this.props.isSelected}/>
                 </div>
-                <button className="preloader" type="button" onClick={this.onLoadMore}>Load More</button>
+                <button className="preloader" type="button" onClick={this.props.fetchContent}>Load More</button>
             </figcaption>
         );
     }
 }
 
-class PokemonItem extends Component {
+class PokemonCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isHovered: false,
-            isSelected: false
+            selected: false
         }
     }
 
-    hoverHeart = (flag) => {
-        if (!this.state.isSelected)
-            this.setState({isHovered: flag});
-    };
-    selectItem = (e) => {
+    onCheck = (e) => {
         e.preventDefault();
-        this.setState({isSelected: !this.state.isSelected });
-        if (this.state.isSelected) {
-            console.log();
-            this.setState({isHovered: false});
-        }
+        this.setState({selected: !this.state.selected});
+        this.props.selectItem(this.state.selected);
+        console.log('this.state.selected', this.state.selected)
     };
+
     render() {
-        let heart = blackLike;
-        if (this.state.isHovered) {
-            heart = redLike;
-        }
+        let heart = this.state.selected ? redLike : blackLike;
         return (
-            <figure className="pokemon-item">
+            <figure className="pokemon-card">
                 <div className="preview">
                     <img
                         src="https://vignette.wikia.nocookie.net/pokemon/images/1/13/007Squirtle_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105230449"
@@ -60,8 +53,7 @@ class PokemonItem extends Component {
                 <div className="like">
                     <a href="#">
                         <img src={heart}
-                             onMouseOver={() => this.hoverHeart(true)} onMouseOut={() => this.hoverHeart(false)}
-                             onMouseDown={this.selectItem}
+                             onClick={this.onCheck}
                              width="32" height="auto"
                              alt="Like"/>
                     </a>
@@ -71,4 +63,24 @@ class PokemonItem extends Component {
     }
 }
 
-export default PokemonContainer;
+const mapStateToProps = (state) => {
+    return {
+        isSelected: !state.isSelected,
+        isLoading: state.isLoading
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        selectItem: (flag) => {
+            dispatch(selectAction(flag))
+        },
+        showLoadingStatus: (flag) => {
+            dispatch(onLoadingAction(flag))
+        },
+        fetchContent: () => {
+            dispatch(fetchingAction());
+        }
+    }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonContainer);

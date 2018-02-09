@@ -1,24 +1,23 @@
 import {combineReducers} from 'redux';
 
-import {IS_SELECTED, IS_LOADING, GET_CONTENT} from '../Actions/actions';
+import {POKEMON_WAS_SELECTED,
+    CONTENT_IS_LOADING,
+    REQUEST_CONTENT} from '../Actions/actions';
 
 const initialState = {
-    isSelected: false,
-    isLoading: true,
+    wasSelected: false,
+    isLoading: false,
     payload: {}
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case IS_SELECTED:
-            console.log('reducer IS_SELECTED', state, action);
+        case POKEMON_WAS_SELECTED:
+            return {wasSelected: action.wasSelected};
+        case CONTENT_IS_LOADING:
             return state;
-        case IS_LOADING:
-            console.log('reducer IS_LOADING', state, action);
-            return {isLoading: action.isLoading};
-        case GET_CONTENT:
-            console.log('reducer GET_CONTENT', state, action);
-            return state;
+        case REQUEST_CONTENT:
+                return state;
         default:
             return state;
     }

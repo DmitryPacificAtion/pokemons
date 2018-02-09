@@ -9,14 +9,12 @@ class Authenticate {
         };
 
     };
-    getData = () => {
-        fetch(this.URI, this.initializeRequest())
+    sendRequest = () => {
+        return fetch(this.URI, this.initializeRequest())
             .then(data => {
-                console.log('0', data);
-                return data;
+                return data.json();
             })
             .catch(error => {
-                console.log('2');
                throw new Error('Failed to fetch: ' + error);
             });
     };

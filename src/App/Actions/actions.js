@@ -13,20 +13,33 @@ export const onLoadingAction = (flag) => {
     return {type: CONTENT_IS_LOADING, contentIsLoading: flag};
 };
 export const getContentAction = () => {
-    return {type: REQUEST_CONTENT }
-    /*return (dispatch) => {
+    return (dispatch) => {
         dispatch(onLoadingAction(true));
-        auth.sendRequest()
-            .then(json => {
-                console.log('json', json);
-                dispatch(onLoadingAction(false));
-                return {
-                    type: REQUEST_CONTENT, payload: json
-                };
-            })
-            .catch(error => {
-                dispatch(onLoadingAction(false));
-                throw new Error('Oops: ' + error)
-            });
-    }*/
+        setTimeout(() => {
+            dispatch(onLoadingAction(false));
+            return {
+                type: REQUEST_CONTENT,
+                payload: {"json": "yes"}
+            }
+        }, 300)
+    }
 };
+
+
+/*        setTimeout(() => {
+            return {
+                type: REQUEST_CONTENT, payload: {"json": "yes"}
+            };
+        },3000);*/
+/*auth.sendRequest()
+    .then(json => {
+        console.log('json', json);
+        dispatch(onLoadingAction(false));
+        return {
+            type: REQUEST_CONTENT, payload: json
+        };
+    })
+    .catch(error => {
+        dispatch(onLoadingAction(false));
+        throw new Error('Oops: ' + error)
+    });*/

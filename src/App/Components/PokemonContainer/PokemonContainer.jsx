@@ -8,13 +8,17 @@ import {connect} from "react-redux";
 import Spinner from "../Spinner/Spinner.jsx";
 import defaultPng from './default.png';
 
+/*const LoadMore = (loading) => {
+    console.log(loading)
+     /!*if (loading === true) {
+         return <Spinner/>
+     }*!/
+     return <button className="preloader" type="button" onClick={this.props.getContent}>Load More</button>;
+};*/
+
 class PokemonContainer extends Component {
     render() {
-        let loading = this.props.isLoading
-            ? <Spinner/>
-            : <button className="preloader" type="button" onClick={this.props.getContent}>Load More</button>;
-
-
+        let loading = <button className="preloader" type="button" onClick={this.props.getContent}>Load More</button>
         return (
             <figcaption>
                 <div className="figure-wrapper">
@@ -49,8 +53,8 @@ class PokemonCard extends Component {
                     <a href="#">
                         <img src={heart}
                              onClick={this.props.selectItem}
-                             onMouseOver={ () => this.setState({hovered: true})}
-                             onMouseOut={ () => this.setState({hovered: false})}
+                             onMouseOver={() => this.setState({hovered: true})}
+                             onMouseOut={() => this.setState({hovered: false})}
                              width="32" height="auto"
                              alt="Like"/>
                     </a>
@@ -63,7 +67,7 @@ class PokemonCard extends Component {
 const mapStateToProps = (state) => {
     return {
         wasSelected: state.wasSelected,
-        isLoading: state.isLoading
+        contentIsLoading: state.contentIsLoading
     }
 };
 

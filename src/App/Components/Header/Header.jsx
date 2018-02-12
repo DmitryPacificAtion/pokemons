@@ -8,13 +8,13 @@ class Header extends Component {
         let payload = this.props.payload;
         let list = '';
         if (typeof payload === "object" && Object.keys(payload).length > 0) {
-            list = Object.keys(payload).map(item => {
-                return <li key={item} className="menu-item">
+            list = Object.keys(payload).map(endpoint => {
+                return <li key={endpoint} className="menu-item">
                     <a href="#" className="menu-item__link"
                        onClick={(e) => {
                            e.preventDefault();
-                           this.props.getData(item)
-                       }}>{item}</a>
+                           this.props.getData(endpoint)
+                       }}>{endpoint}</a>
                 </li>
             });
         }
@@ -35,8 +35,8 @@ export default connect(
     },
     dispatch => {
         return {
-            getData: (payload) => {
-                dispatch(fetchData(payload));
+            getData: (endpoint) => {
+                dispatch(fetchData(endpoint));
             }
         }
     })(Header);

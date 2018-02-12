@@ -12,7 +12,9 @@ export const pokemonWasSelectedAction = () => {
 export const onLoadingAction = (flag) => {
     return {type: CONTENT_IS_LOADING, contentIsLoading: flag};
 };
+
 export const getDataAction = (json) => {
+    console.log('getDataAction json', json);
     return {
         type: REQUEST_CONTENT,
         payload: json
@@ -20,13 +22,20 @@ export const getDataAction = (json) => {
 };
 
 export const fetchData = (endpoint = '') => {
+    let payloadDataName = 'pokemonData';
     return (dispatch) => {
-        dispatch(onLoadingAction(true));
-        auth.sendRequest(endpoint)
-            .then(json => {
-                dispatch(getDataAction(json));
-                return json;
-            })
-            .then(dispatch(onLoadingAction(false)))
+        if (localStorage.getItem(payloadDataName)) {
+            return dispatch(getDataAction(auth.unserialize(payloadDataName)));
+        }
+        else {
+            dispatch(onLoadingAction(true));
+            return auth.sendRequest(endpoint)
+                .then(json => {
+                    dispatch(getDataAction(json));
+                    auth.serialize(payloadDataName, json);
+                    dispatch(onLoadingAction(false));
+                    return json;
+                })
+        }
     }
 };

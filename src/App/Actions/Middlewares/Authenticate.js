@@ -21,11 +21,11 @@ class Authenticate {
                throw new Error('Failed to fetch: ' + error);
             });
     };
-    serialize = (json) => {
-        return JSON.stringify(json)
+    serialize = (name, json) => {
+        localStorage.setItem(name, JSON.stringify(json));
     };
     unserialize = (item) => {
-        JSON.parse(localStorage.getItem(item),
+        return JSON.parse(localStorage.getItem(item),
             (key, value) => {
                 return value;
             })

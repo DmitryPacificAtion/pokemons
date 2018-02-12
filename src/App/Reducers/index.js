@@ -5,7 +5,7 @@ import {POKEMON_WAS_SELECTED, CONTENT_IS_LOADING, REQUEST_CONTENT} from '../Acti
 const initialState = {
     wasSelected: false,
     contentIsLoading: false,
-    payload: {}
+    payload: auth.unserialize('pokemonData')
 };
 
 const reducer = (state = initialState, action) => {

@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-
+import auth from '../Actions/Middlewares/Authenticate';
 import {POKEMON_WAS_SELECTED, CONTENT_IS_LOADING, REQUEST_CONTENT} from '../Actions/actions';
 
 const initialState = {
@@ -9,13 +9,17 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+    let newState = {...state};
     switch (action.type) {
         case POKEMON_WAS_SELECTED:
-            return {wasSelected: action.wasSelected};
+            newState.wasSelected = action.wasSelected;
+            return newState;
         case CONTENT_IS_LOADING:
-            return {contentIsLoading: action.contentIsLoading};
+            newState.contentIsLoading = action.contentIsLoading;
+            return newState;
         case REQUEST_CONTENT:
-                return {payload: action.payload};
+            newState.payload = action.payload;
+            return newState;
         default:
             return state;
     }

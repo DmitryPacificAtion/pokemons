@@ -12,34 +12,21 @@ export const pokemonWasSelectedAction = () => {
 export const onLoadingAction = (flag) => {
     return {type: CONTENT_IS_LOADING, contentIsLoading: flag};
 };
-export const getContentAction = () => {
-    return (dispatch) => {
-        dispatch(onLoadingAction(true));
-        setTimeout(() => {
-            dispatch(onLoadingAction(false));
-            return {
-                type: REQUEST_CONTENT,
-                payload: {"json": "yes"}
-            }
-        }, 300)
+export const getDataAction = (json) => {
+    return {
+        type: REQUEST_CONTENT,
+        payload: json
     }
 };
 
-
-/*        setTimeout(() => {
-            return {
-                type: REQUEST_CONTENT, payload: {"json": "yes"}
-            };
-        },3000);*/
-/*auth.sendRequest()
-    .then(json => {
-        console.log('json', json);
-        dispatch(onLoadingAction(false));
-        return {
-            type: REQUEST_CONTENT, payload: json
-        };
-    })
-    .catch(error => {
-        dispatch(onLoadingAction(false));
-        throw new Error('Oops: ' + error)
-    });*/
+export const fetchData = (endpoint = '') => {
+    return (dispatch) => {
+        dispatch(onLoadingAction(true));
+        auth.sendRequest(endpoint)
+            .then(json => {
+                dispatch(getDataAction(json));
+                return json;
+            })
+            .then(dispatch(onLoadingAction(false)))
+    }
+};

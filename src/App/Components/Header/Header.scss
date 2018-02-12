@@ -16,23 +16,25 @@ header {
 }
 
 .menu {
-  background-color: $blue;
-  display: flex;
-  flex-wrap: wrap;
+  background-color: #d0f2ff;
   margin: 0 auto;
+  padding: 0;
   list-style-type: none;
-  &__item {
+  &-item {
     padding: 10px 15px;
     &:hover {
       cursor: pointer;
       background-color: #2d5cb7;
+      &__link {
+        color: #eee;
+      }
     }
-  }
-  &__link {
-    color: #eee;
-    display: inline-block;
-    text-decoration: none;
-    padding: 7px 10px;
+    &__link {
+      color: $blue;
+      display: inline-block;
+      text-decoration: none;
+      padding: 7px 10px;
+    }
   }
 }
 

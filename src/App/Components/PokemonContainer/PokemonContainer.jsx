@@ -2,23 +2,19 @@ import React, {Component} from 'react';
 import './PokemonContainer.scss';
 import redLike from './like-red.svg';
 import blackLike from './like-black.svg';
-import {pokemonWasSelectedAction, getContentAction} from "../../Actions/actions";
+import {pokemonWasSelectedAction, fetchData} from "../../Actions/actions";
 import PokemonInfo from '../../Components/PokemonInfo/PokemonInfo.jsx';
 import {connect} from "react-redux";
 import Spinner from "../Spinner/Spinner.jsx";
 import defaultPng from './default.png';
 
-/*const LoadMore = (loading) => {
-    console.log(loading)
-     /!*if (loading === true) {
-         return <Spinner/>
-     }*!/
-     return <button className="preloader" type="button" onClick={this.props.getContent}>Load More</button>;
-};*/
-
 class PokemonContainer extends Component {
     render() {
-        let loading = <button className="preloader" type="button" onClick={this.props.getContent}>Load More</button>
+        let loading = '';
+        if (this.props.contentIsLoading) {
+            loading = <Spinner/>;
+        }
+        else loading = <button className="preloader" type="button" onClick={this.props.getData}>Load More</button>;
         return (
             <figcaption>
                 <div className="figure-wrapper">
@@ -67,17 +63,20 @@ class PokemonCard extends Component {
 const mapStateToProps = (state) => {
     return {
         wasSelected: state.wasSelected,
-        contentIsLoading: state.contentIsLoading
+        contentIsLoading: state.contentIsLoading,
+        payload: state.payload
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        selectItem: () => {
+        selectItem: (e) => {
+            e.preventDefault();
             dispatch(pokemonWasSelectedAction())
         },
-        getContent: () => {
-            dispatch(getContentAction());
+        getData: (e) => {
+            e.preventDefault();
+            dispatch(fetchData());
         }
     }
 };

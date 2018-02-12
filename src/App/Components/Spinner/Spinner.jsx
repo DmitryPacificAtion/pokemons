@@ -8,10 +8,6 @@ class Spinner extends React.Component {
             dots: ''
         }
     }
-    componentDidMount() {
-        this.startTiming();
-    }
-
     startTiming() {
         this.timerId = setInterval (
             () => this.tick(),
@@ -44,6 +40,6 @@ class Spinner extends React.Component {
             <p className="loading">{loading}</p>
         </div>
     }
-};
+}
 
 export default Spinner;

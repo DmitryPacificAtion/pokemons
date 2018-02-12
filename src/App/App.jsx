@@ -9,15 +9,11 @@ import {connect} from "react-redux";
 
 class App extends Component {
     render() {
-        let component = <Spinner/>;
-        if(!false) {
-            component = <PokemonContainer />;
-        }
         return (
             <div className="l-wrapper">
                 <Header />
                 <section>
-                    {component}
+                    <PokemonContainer />
                 </section>
             </div>
         );

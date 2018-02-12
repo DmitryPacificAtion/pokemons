@@ -12,7 +12,6 @@ class Authenticate {
         let url = 'https://pokeapi.co/api/v2/';
         if (endpoint !== null && endpoint !== undefined && endpoint.length > 0)
             url += `${endpoint}/`;
-
         return fetch(url, this.initializeRequest())
             .then(data => {
                 return data.json();

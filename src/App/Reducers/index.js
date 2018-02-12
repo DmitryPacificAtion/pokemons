@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
 import auth from '../Actions/Middlewares/Authenticate';
-import {POKEMON_WAS_SELECTED, CONTENT_IS_LOADING, REQUEST_CONTENT} from '../Actions/actions';
+import {POKEMON_WAS_SELECTED, CONTENT_IS_LOADING, REQUEST_CONTENT, fetchData} from '../Actions/actions';
 
 const initialState = {
     wasSelected: false,
     contentIsLoading: false,
-    payload: auth.unserialize('pokemonData')
+    payload: auth.unserialize('pokemonData') || fetchData()
 };
 
 const reducer = (state = initialState, action) => {

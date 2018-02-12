@@ -12,6 +12,12 @@ figure {
   text-align: left;
   width: 30%;
   box-sizing: border-box;
+  &:hover {
+    box-shadow: 3px 3px 15px 1px rgba(0, 0, 0, 0.5);
+  }
+  .preview img {
+    display: block;
+  }
 }
 .preloader {
   background-color: $blue-btn-l;
@@ -21,9 +27,6 @@ figure {
   margin-top: 20px;
   padding: 10px 20px;
   width: 95%;
-}
-figure.preview img {
-  display: block;
 }
 button.type {
   border: 1px solid $txt;
@@ -45,9 +48,7 @@ button.type {
   flex-direction: row;
   flex-wrap: wrap;
 }
-figure:hover {
-  box-shadow: 3px 3px 15px 1px rgba(0, 0, 0, 0.5);
-}
+
 .preloader:active {
   background-color: $blue-btn-d;
 }

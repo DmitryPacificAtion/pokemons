@@ -1,5 +1,6 @@
 import React from 'react';
 import './Spinner.scss';
+import defalut from './spinner.gif';
 
 class Spinner extends React.Component {
     constructor(props) {
@@ -35,7 +36,7 @@ class Spinner extends React.Component {
         let loading = 'Loading' + this.state.dots;
         return <div className="spinner">
             <p>
-                <img src="https://media.giphy.com/media/LGEyDPOxiCNyM/source.gif" width="64px" height="auto" alt="Loading"/>
+                <img src={defalut} width="64px" height="auto" alt="Loading"/>
             </p>
             <p className="loading">{loading}</p>
         </div>

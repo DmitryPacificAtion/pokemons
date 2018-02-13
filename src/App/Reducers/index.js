@@ -1,16 +1,17 @@
 import {combineReducers} from 'redux';
 import auth from '../Actions/Middlewares/Authenticate';
-import {POKEMON_WAS_SELECTED, CONTENT_IS_LOADING, GET_POKEMON_LIST, GET_POKEMON_ITEM, fetchList} from '../Actions/actions';
-
-let payloadDataName = 'pokemonData';
+import {
+    POKEMON_WAS_SELECTED, CONTENT_IS_LOADING, GET_POKEMON_LIST, GET_POKEMON_ITEM, INITIALIZE
+} from '../Actions/actions';
 
 const initialState = {
     wasSelected: false,
     contentIsLoading: true,
     pokemons: {
-        list: auth.unserialize(payloadDataName) || {},
+        list: [],
         items: []
-    }
+    },
+    isInitialized: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -23,12 +24,18 @@ const reducer = (state = initialState, action) => {
             newState.contentIsLoading = action.contentIsLoading;
             return newState;
         case GET_POKEMON_LIST:
-            newState.pokemons.list = Object.assign({}, action.list);
-            auth.serialize(payloadDataName, newState.pokemons);
+            if (newState.pokemons.list.results !== undefined)
+                newState.pokemons.list.results.push
+            else
+                newState.pokemons.list = Object.assign({}, action.list);
+            auth.serialize('pokemonData', newState.pokemons);
             return newState;
         case GET_POKEMON_ITEM:
             newState.pokemons.items.push(action.item);
-            auth.serialize(payloadDataName, newState.pokemons);
+            auth.serialize('pokemonData', newState.pokemons);
+            return newState;
+        case INITIALIZE:
+            newState.isInitialized = action.isInitialized;
             return newState;
         default:
             return state;

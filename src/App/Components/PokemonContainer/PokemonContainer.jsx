@@ -7,20 +7,18 @@ import redLike from './like-red.svg';
 import blackLike from './like-black.svg';
 import './PokemonContainer.scss';
 import defaultPng from './default.png';
-import auth from '../../Actions/Middlewares/Authenticate';
 
 class PokemonContainer extends Component {
-    componentDidMount() {
-        this.props.getList();
+    componentWillMount() {
+        if (!this.props.isInitialized)
+            this.props.getList();
     }
-
     render() {
         let loading = '';
         if (this.props.contentIsLoading) {
             loading = <Spinner/>;
         }
-        else loading = <button className="preloader" type="button" onClick={this.props.getList}>Load More</button>;
-        console.log(this.props);
+        else loading = <button className="preloader" type="button" onClick={() => this.props.getList(this.props.pokemons.list.next)}>Load More</button>;
         return (
             <figcaption>
                 <div className="figure-wrapper">
@@ -28,6 +26,8 @@ class PokemonContainer extends Component {
                         this.props.contentIsLoading
                             ? <Spinner/>
                             : this.props.pokemons.list.results.map(i => {
+                                let a = i.url.match('[^\\w]\\d+');
+                                console.log('item ', i, a[0]);
                                 return <PokemonCard key={i.url}
                                                     selectItem={this.props.selectItem}
                                                     wasSelected={this.props.wasSelected}
@@ -37,7 +37,7 @@ class PokemonContainer extends Component {
                             })
                     }
                 </div>
-                <button className="preloader" type="button">Load More</button>
+                <button className="preloader" type="button" onClick={() => this.props.getList(this.props.pokemons.list.next)}>Load More</button>
             </figcaption>
         );
     }
@@ -87,7 +87,8 @@ const mapStateToProps = (state) => {
     return {
         wasSelected: state.wasSelected,
         contentIsLoading: state.contentIsLoading,
-        pokemons: state.pokemons
+        pokemons: state.pokemons,
+        isInitialized: state.isInitialized
     }
 };
 

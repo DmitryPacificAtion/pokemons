@@ -9,9 +9,9 @@ class Authenticate {
 
     };
     sendRequest = (endpoint) => {
-        let url = 'https://pokeapi.co/api/v2/';
+        let url = 'https://pokeapi.co/api/v2/pokemon/';
         if (endpoint !== null && endpoint !== undefined && endpoint.length > 0)
-            url += `${endpoint}/`;
+            url = endpoint;
         return fetch(url, this.initializeRequest())
             .then(data => {
                 return data.json();

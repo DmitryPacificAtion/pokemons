@@ -5,29 +5,6 @@ figcaption {
   width: 70%;
 }
 
-.pokemon-card {
-  border: 2px solid $green-btn-d;
-  box-shadow: 1px 1px 7px 0px rgba(0, 0, 0, 0.5);
-  margin: 10px;
-  padding: 15px;
-  text-align: left;
-  width: 30%;
-  box-sizing: border-box;
-  &:hover {
-    box-shadow: 3px 3px 15px 1px rgba(0, 0, 0, 0.5);
-  }
-  .preview img {
-    display: block;
-  }
-  .title {
-    a {
-      color: black;
-      text-decoration: none;
-      text-transform: capitalize;
-    }
-  }
-}
-
 .preloader {
   background-color: $blue-btn-l;
   border: none;
@@ -69,9 +46,6 @@ button.type {
   figcaption {
     width: 60%;
   }
-  figure {
-    width: 45%;
-  }
 }
 
 @media screen and (max-width: 800px) {
@@ -81,16 +55,10 @@ button.type {
   figcaption {
     width: 50%;
   }
-  figure {
-    width: 100%;
-  }
 }
 
 @media screen and (max-width: 510px) {
   figcaption {
     width: 100%;
-  }
-  figure {
-    text-align: center;
   }
 }

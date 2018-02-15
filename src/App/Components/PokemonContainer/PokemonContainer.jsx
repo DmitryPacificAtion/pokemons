@@ -1,108 +1,66 @@
 import React, {Component} from 'react';
-import {pokemonWasSelectedAction, fetchList, fetchItem} from "../../Actions/actions";
-import PokemonInfo from '../../Components/PokemonInfo/PokemonInfo.jsx';
+import {selectAction, fetchAction} from "../../Actions/actions";
+import PokemonInfo from './PokemonInfo/PokemonInfo.jsx';
 import {connect} from "react-redux";
 import Spinner from "../Spinner/Spinner.jsx";
-import redLike from './like-red.svg';
-import blackLike from './like-black.svg';
 import './PokemonContainer.scss';
-import defaultPng from './default.png';
+import PokemonCard from './PokemonCard/PokemonCard.jsx'
+import Pagination from '../Pagination/Pagination.jsx'
 
 class PokemonContainer extends Component {
     componentWillMount() {
-        if (!this.props.isInitialized)
-            this.props.getList();
+        this.props.getData();
     }
+
     render() {
-        let loading = '';
-        if (this.props.contentIsLoading) {
-            loading = <Spinner/>;
+        let {pokemons} = this.props;
+        let content = '';
+        if (pokemons.results !== undefined) {
+            content = pokemons.results.map(i => {
+                let id = i.url.match('[^\\w]\\d+')[0].match('\\d+')[0];
+                return <PokemonCard key={i.url}
+                                    onSelectHandler={this.props.selectItem}
+                                    selectedItems={this.props.selectedItems}
+                                    url={i.url}
+                                    id={id}
+                                    title={`${i.name} ${id}`}
+                                    onClickHandler={this.props.getData}/>
+            })
         }
-        else loading = <button className="preloader" type="button" onClick={() => this.props.getList(this.props.pokemons.list.next)}>Load More</button>;
+        let spinner = '';
+        if (this.props.isLoading) {
+            spinner = <Spinner/>
+        }
         return (
             <figcaption>
                 <div className="figure-wrapper">
-                    {
-                        this.props.contentIsLoading
-                            ? <Spinner/>
-                            : this.props.pokemons.list.results.map(i => {
-                                let a = i.url.match('[^\\w]\\d+');
-                                console.log('item ', i, a[0]);
-                                return <PokemonCard key={i.url}
-                                                    selectItem={this.props.selectItem}
-                                                    wasSelected={this.props.wasSelected}
-                                                    url={i.url}
-                                                    title={i.name}
-                                                    onClickHandler={this.props.getItem}/>
-                            })
-                    }
+                    {content}
+                    {spinner}
                 </div>
-                <button className="preloader" type="button" onClick={() => this.props.getList(this.props.pokemons.list.next)}>Load More</button>
+                <Pagination/>
+                <button className="preloader" type="button"
+                        onClick={() => this.props.getData(this.props.pokemons.next)}>Load More
+                </button>
             </figcaption>
-        );
-    }
-}
-
-class PokemonCard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            hovered: false
-        }
-    }
-
-    render() {
-        let heart = (this.props.wasSelected || this.state.hovered) ? redLike : blackLike;
-        let {title, url, onClickHandler} = this.props;
-        return (
-            <figure className="pokemon-card">
-                <div className="preview">
-                    <img
-                        src={defaultPng}
-                        alt="Pokemon 0" width="120" height="120"/>
-                </div>
-                <h2 className="title">
-                    <a href='#' onClick={(e) => {
-                        e.preventDefault();
-                        onClickHandler(url)
-                    }}>{title}</a>
-                </h2>
-                <button className="type green-btn">Grass</button>
-                <div className="like">
-                    <a href="#">
-                        <img src={heart}
-                             onClick={this.props.selectItem}
-                             onMouseOver={() => this.setState({hovered: true})}
-                             onMouseOut={() => this.setState({hovered: false})}
-                             width="32" height="auto"
-                             alt="Like"/>
-                    </a>
-                </div>
-            </figure>
         );
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        wasSelected: state.wasSelected,
-        contentIsLoading: state.contentIsLoading,
-        pokemons: state.pokemons,
-        isInitialized: state.isInitialized
+        selectedItems: state.selectedItems,
+        isLoading: state.isLoading,
+        pokemons: state.payload
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        selectItem: (e) => {
-            e.preventDefault();
-            dispatch(pokemonWasSelectedAction())
+        selectItem: (id) => {
+            dispatch(selectAction(id))
         },
-        getList: () => {
-            dispatch(fetchList());
-        },
-        getItem: (endpoint) => {
-            dispatch(fetchItem(endpoint));
+        getData: (endpoint) => {
+            dispatch(fetchAction(endpoint));
         }
     }
 };

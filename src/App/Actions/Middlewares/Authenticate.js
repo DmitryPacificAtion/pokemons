@@ -8,7 +8,6 @@ class Authenticate {
         };
     };
     sendRequest = (endpoint) => {
-        console.log('endpoint', typeof endpoint, endpoint);
         let url = 'https://pokeapi.co/api/v2/pokemon/';
         if (endpoint !== null && endpoint !== undefined && endpoint.length > 0)
             url = endpoint;

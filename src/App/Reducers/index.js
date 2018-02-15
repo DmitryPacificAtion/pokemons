@@ -1,41 +1,31 @@
 import {combineReducers} from 'redux';
-import auth from '../Actions/Middlewares/Authenticate';
-import {
-    POKEMON_WAS_SELECTED, CONTENT_IS_LOADING, GET_POKEMON_LIST, GET_POKEMON_ITEM, INITIALIZE
-} from '../Actions/actions';
+import {POKEMON_WAS_SELECTED, SEND_REQUEST, GET_RESPONSE} from '../Actions/actions';
 
 const initialState = {
-    wasSelected: false,
-    contentIsLoading: true,
-    pokemons: {
-        list: [],
-        items: []
-    },
-    isInitialized: false
+    selectedItems: [],
+    isLoading: true,
+    payload: {
+        //pagination: []
+    }
 };
 
 const reducer = (state = initialState, action) => {
     let newState = {...state};
     switch (action.type) {
         case POKEMON_WAS_SELECTED:
-            newState.wasSelected = action.wasSelected;
+            newState.selectedItems.push(action.id);
             return newState;
-        case CONTENT_IS_LOADING:
-            newState.contentIsLoading = action.contentIsLoading;
-            return newState;
-        case GET_POKEMON_LIST:
-            if (newState.pokemons.list.results !== undefined)
-                newState.pokemons.list.results.push
-            else
-                newState.pokemons.list = Object.assign({}, action.list);
-            auth.serialize('pokemonData', newState.pokemons);
-            return newState;
-        case GET_POKEMON_ITEM:
-            newState.pokemons.items.push(action.item);
-            auth.serialize('pokemonData', newState.pokemons);
-            return newState;
-        case INITIALIZE:
-            newState.isInitialized = action.isInitialized;
+        case GET_RESPONSE:
+            //newState.payload.pagination.push(action.payload.results);
+            if (newState.payload.results === undefined)
+                newState.payload = Object.assign({}, action.payload);
+            else {
+                newState.payload.next = action.payload.next;
+                newState.payload.previous = action.payload.previous;
+                newState.payload.results = [...newState.payload.results, ...action.payload.results];
+            }
+        case SEND_REQUEST:
+            newState.isLoading = action.isLoading;
             return newState;
         default:
             return state;

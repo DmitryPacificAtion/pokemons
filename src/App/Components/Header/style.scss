@@ -1,5 +1,3 @@
-@import '../../ColorVariables';
-
 header {
   border: 5px solid $blue;
   font-size: 34px;
@@ -21,17 +19,20 @@ header {
   margin: 0 auto;
   padding: 0;
   list-style-type: none;
+
   &-item {
     border: 2px solid #d0f2ff;
-    box-shadow: 1px 1px 7px 0 rgba(0,0,0,0.5);
+    box-shadow: 1px 1px 7px 0 rgba(0, 0, 0, 0.5);
     float: left;
     margin-right: 1.2%;
     margin-bottom: 10px;
     width: 23%;
+
     &:hover {
       cursor: pointer;
       background-color: #d0f2ff;
     }
+
     &__link {
       color: $blue;
       display: block;

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import Header from './Components/Header/Header.jsx';
-import Spinner from "./Components/Spinner/Spinner.jsx";
-import PokemonContainer from './Components/PokemonContainer/PokemonContainer.jsx'
+import Header from './Components/Header/Header.jsx.js.js';
+import Spinner from "./Components/Spinner/Spinner.jsx.js.js";
+import PokemonContainer from './Components/PokemonContainer/PokemonContainer.jsx.js.js'
 import './ColorVariables.scss';
 import './App.scss';
 import {connect} from "react-redux";

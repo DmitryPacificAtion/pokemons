@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {selectAction, fetchAction} from "../../Actions/actions";
-import PokemonInfo from './PokemonInfo/PokemonInfo.jsx';
+import PokemonInfo from './PokemonInfo/PokemonInfo.jsx.js';
 import {connect} from "react-redux";
-import Spinner from "../Spinner/Spinner.jsx";
+import Spinner from "../Spinner/Spinner.jsx.js";
 import './PokemonContainer.scss';
-import PokemonCard from './PokemonCard/PokemonCard.jsx'
-import Pagination from '../Pagination/Pagination.jsx'
+import PokemonCard from './PokemonCard/PokemonCard.jsx.js'
+import Pagination from '../Pagination/Pagination.jsx.js'
 
 class PokemonContainer extends Component {
     componentWillMount() {

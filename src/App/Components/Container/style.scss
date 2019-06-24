@@ -1,5 +1,3 @@
-@import "../../ColorVariables";
-
 figcaption {
   text-align: center;
   width: 70%;
@@ -23,6 +21,7 @@ button.type {
 
 .like {
   padding-top: 10px;
+
   img:active {
     border: 1px solid #333333;
     border-radius: 5px;
@@ -52,6 +51,7 @@ button.type {
   .preloader {
     font-size: 30px;
   }
+
   figcaption {
     width: 50%;
   }

@@ -12,18 +12,41 @@ $blue-btn-d: rgb(0, 94, 245);
 $purple-btn-l: rgb(142, 94, 176);
 $purple-btn-d: rgb(112, 44, 146);
 
+body {
+  color: #333333;
+  font: 400 16px/18px Helvetica, 'Open Sans', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a:active img {
+  border: none;
+  text-decoration: none;
+  outline: none;
+}
+
+button {
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
 .red-btn {
   background: linear-gradient(to bottom, $red-btn-l, $red-btn-d);
 }
+
 .yellow-btn {
   background: linear-gradient(to bottom, $yellow-btn-l, $yellow-btn-d);
 }
+
 .green-btn {
   background: linear-gradient(to bottom, $green-btn-l, $green-btn-d);
 }
+
 .blue-btn {
   background: linear-gradient(to bottom, $blue-btn-l, $blue-btn-d);
 }
+
 .purple-btn {
   background: linear-gradient(to bottom, $purple-btn-l, $purple-btn-d);
 }

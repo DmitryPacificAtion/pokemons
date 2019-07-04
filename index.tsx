@@ -2,10 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Hello } from "./hello";
 
-const elem = document.getElementById("root");
-console.log("elem", elem);
+(function() {
+  const element = document.createElement("div");
+  element.setAttribute("id", "root");
+  document.body.appendChild(element);
+})();
 
 ReactDOM.render(
-    <Hello compiler="TypeScript" framework="React" />,
-    elem
-);
+  <Hello compiler="TypeScript" framework="React" />,
+  document.getElementById("root"));

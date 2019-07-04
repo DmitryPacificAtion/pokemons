@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+/* import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import Header from './Components/Header/Header.jsx.js.js';
 import Spinner from "./Components/Spinner/Spinner.jsx.js.js";
@@ -21,3 +21,4 @@ class App extends Component {
 }
 
 export default connect(null, null)(App);
+ */

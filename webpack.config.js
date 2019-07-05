@@ -1,15 +1,16 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const {CleanWebpackPlugin} = require("clean-webpack-plugin"); // Or try to use without destructuring
+
+// Try to use without destructuring, if node -v less then 10
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   mode: "development",
   entry: {
     app: "./index.tsx",
     // styles: `./src/index.styl`,
-  }
-  ,
+  },
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
@@ -20,7 +21,6 @@ module.exports = {
       {
         test: /\.tsx$/,
         use: ["ts-loader"],
-
         exclude: "/node_modules/",
       },
       {

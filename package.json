@@ -2,9 +2,8 @@
   "name": "pokemons",
   "version": "1.12.3",
   "description": "My test project",
-  "main": "index.js",
   "repository": "https://github.com/DmitryPacificAtion/pokemons.git",
-  "author": "d.bruslik <d.bruslik@mobilunity.com>",
+  "author": "PacificAtion",
   "private": true,
   "license": "ISC",
   "scripts": {

@@ -5,6 +5,12 @@ import { createStore } from 'redux';
 import rootReducer from './reducers';
 import App from './components/App';
 
+(function() {
+  const element = document.createElement("div");
+  element.setAttribute("id", "root");
+  document.body.appendChild(element);
+})();
+
 const store = createStore(rootReducer)
 
 render(

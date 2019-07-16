@@ -8,7 +8,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
   mode: "development",
   entry: {
-    app: "./src/index.js",
+    app: "./src/index.jsx",
     // styles: `./src/index.styl`,
   },
   output: {
@@ -19,13 +19,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        use: ["babel-loader"],
+        test: /\.jsx$/,
         exclude: "/node_modules/",
+        use: [{
+          loader: "babel-loader",
+        }],
       },
       {
         test: /\.tsx$/,
-        use: ["ts-loader"],
+        use: [{
+          loader: "ts-loader",
+        }],
         exclude: "/node_modules/",
       },
       {
@@ -58,7 +62,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json", ".styl", ".css", ".sass"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".styl", ".css", ".sass"],
   },
   devtool: "inline-source-map",
   plugins: [

@@ -5,6 +5,6 @@
   },
   "editor.renderWhitespace": "all",
   "editor.formatOnSaveTimeout": 740,
-  "editor.suggestFontSize": 14,
-  "window.zoomLevel": 0.6
+  "editor.suggestFontSize": 12,
+  "window.zoomLevel": 0.4
 }

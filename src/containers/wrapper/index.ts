@@ -1,21 +1,6 @@
 import { connect } from "react-redux";
-import { fetchAction, selectAction } from "../../actions";
+import View from "../../components/wrapper";
+import { mapDispatchToProps } from "./map-dispatch-to-props";
+import { mapStateToProps } from "./map-state-to-props";
 
-const mapStateToProps = (state) => {
-  return {
-    selectedItems: state.selectedItems,
-    isLoading: state.isLoading,
-    pokemons: state.payload
-  }
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    selectItem: (id) => {
-      dispatch(selectAction(id))
-    },
-    getData: (endpoint) => {
-      dispatch(fetchAction(endpoint));
-    }
-  }
-};
+export default connect(mapStateToProps, mapDispatchToProps)(View);

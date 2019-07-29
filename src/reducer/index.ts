@@ -1,4 +1,4 @@
-import { GET_RESPONSE, POKEMON_WAS_SELECTED, SEND_REQUEST } from './Actions/actions';
+import { GET_RESPONSE, POKEMON_WAS_SELECTED, SEND_REQUEST } from '../actions';
 
 const initialState = {
   selectedItems: [],

@@ -4,7 +4,7 @@
     "baseUrl": ".",
     "jsx": "react",
     "module": "esnext",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noImplicitThis": true,
     "noImplicitReturns": true,
     "noLib": false,

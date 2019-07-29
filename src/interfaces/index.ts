@@ -1,0 +1,1 @@
+// Here shoud be interfaces

@@ -1,4 +1,4 @@
-import auth from './Middlewares/Authenticate';
+import auth from './middlewares/authenticate';
 
 export const POKEMON_WAS_SELECTED = 'POKEMON_WAS_SELECTED';
 export const SEND_REQUEST = 'SEND_REQUEST';

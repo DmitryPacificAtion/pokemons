@@ -2,14 +2,14 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-// Try to use without destructuring, if node -v less then 10
+// Tip: Try to use without destructuring, if node -v less then 10
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   mode: "development",
   entry: {
-    app: "./src/index.jsx",
-    // styles: `./src/index.styl`,
+    app: "./src/index.tsx",
+    styles: "./src/index.scss",
   },
   output: {
     filename: "bundle.js",
@@ -38,9 +38,8 @@ module.exports = {
           {loader: "style-loader"},
           {loader: "css-loader"},
           {
-            loader: "stylus-loader",
+            loader: "sass-loader",
             options: {
-              use: [require("nib")()],
               "include css": true,
             }
           },

@@ -2,5 +2,9 @@
   "files.exclude": {
     "**/.vscode": true,
     "**/node_modules": true
-  }
+  },
+  "editor.renderWhitespace": "all",
+  "editor.formatOnSaveTimeout": 740,
+  "editor.suggestFontSize": 14,
+  "window.zoomLevel": 0.6
 }

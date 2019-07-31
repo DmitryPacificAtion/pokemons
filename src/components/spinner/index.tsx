@@ -1,22 +1,36 @@
 import React from 'react';
-import defalut from './spinner.gif';
+const spinner = "./spinner.gif";
 
-class Spinner extends React.Component {
-  constructor(props) {
+interface IState {
+  dots: string;
+}
+
+class Spinner extends React.Component<{}, IState> {
+  private _timerId: any;
+  public constructor(props) {
     super(props);
     this.state = {
       dots: ''
     }
   }
-  startTiming() {
+
+  public get timerId(): NodeJS.Timeout {
+    return this._timerId;
+  }
+
+  public set timerId(id: NodeJS.Timeout) {
+    this._timerId = id;
+  }
+
+  public startTiming = () => {
     this.timerId = setInterval(
       () => this.tick(),
       1000
     );
   };
-  tick() {
-    let dot = this.state.dots;
-    if (dot.length === 3) {
+  public tick = () => {
+    const { dots } = this.state;
+    if (dots.length === 3) {
       clearInterval(this.timerId);
       this.setState({
         dots: ''
@@ -25,20 +39,21 @@ class Spinner extends React.Component {
     }
     else {
       this.setState({
-        dots: dot + '.'
+        dots: dots + '.'
       });
     }
   }
 
-
-  render() {
-    let loading = 'Loading' + this.state.dots;
-    return <div className="spinner">
-      <p>
-        <img src={defalut} width="64px" height="auto" alt="Loading" />
-      </p>
-      <p className="loading">{loading}</p>
-    </div>
+  public render() {
+    const { dots } = this.state;
+    return(
+      <div className="spinner">
+        <p>
+          <img src={spinner} width="64px" height="auto" alt="Loading" />
+        </p>
+        <p className="loading">{`Loading ${dots}`}</p>
+      </div>
+    );
   }
 }
 

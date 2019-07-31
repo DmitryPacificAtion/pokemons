@@ -5,15 +5,14 @@ class Authenticate {
     });
     return {
       method: 'GET',
-      headers: headers,
+      headers,
       cache: 'default'
     };
   };
-  sendRequest = (endpoint) => {
-    let url = 'https://pokeapi.co/api/v2/pokemon/';
-    if (endpoint !== null && endpoint !== undefined && endpoint.length > 0)
-      url = endpoint;
-    return fetch(url, this.initializeRequest())
+
+  sendRequest = (endpoint: string): Promise<JSON> => {
+    const mainURL = 'https://pokeapi.co/api/v2/pokemon/';
+    return fetch(endpoint = mainURL)
       .then(data => {
         return data.json();
       })
@@ -21,15 +20,18 @@ class Authenticate {
         throw new Error('Failed to fetch: ' + error);
       });
   };
+
   serialize = (name, json) => {
     localStorage.setItem(name, JSON.stringify(json));
   };
-  unserialize = (item) => {
-    return JSON.parse(localStorage.getItem(item),
+
+  unserialize = (item: string) => {
+    const data = localStorage.getItem(item) || '';
+    return JSON.parse(data,
       (key, value) => {
         return value;
-      })
-  };
+      });
+    };
 }
 
 const auth = new Authenticate();

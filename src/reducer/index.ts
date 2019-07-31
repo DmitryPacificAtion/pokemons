@@ -1,34 +1,33 @@
-import { GET_RESPONSE, POKEMON_WAS_SELECTED, SEND_REQUEST } from '../actions';
+import actionTypes from '../actions/action-types';
 
-const initialState = {
-  selectedItems: [],
-  isLoading: true,
-  payload: {
-    //pagination: []
-  }
-};
+// const initialState = {
+//   selectedItems: [],
+//   isLoading: true,
+//   payload: {
+//     //pagination: []
+//   }
+// };
 
-const reducer = (state = initialState, action) => {
-  let newState = { ...state
-  };
-  switch (action.type) {
-    case POKEMON_WAS_SELECTED:
-      newState.selectedItems.push(action.id);
-      return newState;
-    case GET_RESPONSE:
-      //newState.payload.pagination.push(action.payload.results);
-      if (newState.payload.results === undefined)
-        newState.payload = Object.assign({}, action.payload);
-      else {
-        newState.payload.next = action.payload.next;
-        newState.payload.previous = action.payload.previous;
-        newState.payload.results = [...newState.payload.results, ...action.payload.results];
-      }
-    case SEND_REQUEST:
-      newState.isLoading = action.isLoading;
-      return newState;
-    default:
-      return state;
-  }
+const reducer = (state = {}, {}) => {
+  return state;
+  // switch (action.type) {
+  //   case actionTypes.POKEMON_WAS_SELECTED:
+  //     state.selectedItems.push(action.id);
+  //     return state;
+  //   case actionTypes.GET_RESPONSE:
+  //     //state.payload.pagination.push(action.payload.results);
+  //     if (state.payload.results === undefined)
+  //       state.payload = Object.assign({}, action.payload);
+  //     else {
+  //       state.payload.next = action.payload.next;
+  //       state.payload.previous = action.payload.previous;
+  //       state.payload.results = [...state.payload.results, ...action.payload.results];
+  //     }
+  //   case actionTypes.SEND_REQUEST:
+  //     state.isLoading = action.isLoading;
+  //     return state;
+  //   default:
+  //     return state;
+  // }
 };
 export default reducer;

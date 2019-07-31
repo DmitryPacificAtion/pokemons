@@ -1,18 +1,15 @@
 import React from "react";
-import {render} from "react-dom";
+import ReactDOM from 'react-dom'
 // import reducers from "./App/Reducers/index";
 // import {createStore, applyMiddleware} from "redux";
 // import { createLogger } from "redux-logger";
 // import thunk from "redux-thunk";
 import App from "./components/app";
 
-(function() {
-  const element = document.createElement("div");
-  element.setAttribute("id", "root");
-  document.body.appendChild(element);
-})();
-
-render(<App />, document.getElementById("root"));
+function render() {
+  ReactDOM.render(<App />, document.getElementById("root"));
+}
+render();
 
 // import reducers from "./App/reducers.js";
 

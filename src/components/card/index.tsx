@@ -1,16 +1,32 @@
 import React from "react";
+const defaultPng = "./default.png";
+const blackLike =  "./like-black.svg";
+const redLike = "./like-red.svg";
 
-class Card extends React.Component {
-  constructor(props) {
+interface IProps {
+  wasSelected: boolean;
+  onClickHandler: (url: string) => void;
+  title: string;
+  url: string;
+  // handleSelect: (id: number) => void;
+}
+
+interface IState {
+  hovered: boolean;
+}
+
+class Card extends React.Component<IProps, IState> {
+  public constructor(props: IProps) {
     super(props);
     this.state = {
-      hovered: false
+      hovered: false,
     }
   }
 
-  render() {
-    let heart = (this.props.wasSelected || this.state.hovered) ? redLike : blackLike;
-    let { title, url, onClickHandler } = this.props;
+  public render() {
+    const { title, url, onClickHandler, wasSelected } = this.props;
+    const { hovered } = this.state;
+    const heart = (wasSelected || hovered) ? redLike : blackLike;
     return (
       <figure className="pokemon-card">
         <div className="preview">
@@ -28,7 +44,7 @@ class Card extends React.Component {
         <div className="like">
           <a href="#">
             <img src={heart}
-              onClick={this.props.selectItem}
+              onClick={() => {}}
               onMouseOver={() => this.setState({ hovered: true })}
               onMouseOut={() => this.setState({ hovered: false })}
               width="32" height="auto"

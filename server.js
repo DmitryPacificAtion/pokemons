@@ -6,6 +6,10 @@ const server = express();
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
 
+// console.log("server", server);
+// console.log("config", config);
+// console.log("compiler", compiler);
+
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
 // configuration file as a base.
 server.use(webpackDevMiddleware(compiler, {
@@ -13,7 +17,7 @@ server.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath
 }));
 
-// Serve the files on port 3000.
+// // Serve the files on port 3000.
 server.listen(3000, function () {
   console.log('Example server listening on port 3000!\n');
 });

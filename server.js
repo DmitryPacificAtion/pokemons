@@ -6,10 +6,6 @@ const server = express();
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
 
-// console.log("server", server);
-// console.log("config", config);
-// console.log("compiler", compiler);
-
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
 // configuration file as a base.
 server.use(webpackDevMiddleware(compiler, {

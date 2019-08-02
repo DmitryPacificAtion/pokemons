@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'
 // import { createLogger } from "redux-logger";
 // import thunk from "redux-thunk";
 import App from "./components/app";
+import "./index.scss";
 
 function render() {
   ReactDOM.render(<App />, document.getElementById("root"));

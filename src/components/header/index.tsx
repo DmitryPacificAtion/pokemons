@@ -2,12 +2,12 @@ import React from 'react';
 import repository from '../../repository';
 
 class Header extends React.Component {
-  async componentDidMount() {
+  public async componentDidMount() {
     const data = await repository.getMenuLinks();
     console.log("data", data);
   }
 
-  render() {
+  public render() {
     return (<header><h1>Pokedex</h1></header>);
   }
 }

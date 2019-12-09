@@ -1,8 +1,15 @@
 @import '_variables';
 
-body {
-  color: #333333;
-  font: "400 16px/18px Helvetica", "Open Sans", Arial, sans-serif;
+body,
+a,
+p,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #555555;
+  font-family: 'Helvetica', 'Open Sans', Arial, sans-serif;
 }
 
 h1 {

@@ -7,4 +7,17 @@
   display: inline-block;
   min-width: 25%;
   cursor: pointer;
+
+  .like {
+    background-image: url('./icons/like-black.svg');
+    width: 32px;
+    height: auto;
+    &:hover, &.selected {
+      background-image: url('./icons/like-red.svg');
+    }
+  }
+
+  .title a {
+    text-decoration: none;
+  }
 }

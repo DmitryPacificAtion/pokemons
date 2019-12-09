@@ -1,8 +1,6 @@
 import React from 'react';
 import './styles.scss';
-const defaultPng = './default.png';
-const blackLike = './like-black.svg';
-const redLike = './like-red.svg';
+const defaultPng = './icons/default.png';
 
 interface IProps {
   wasSelected: boolean;
@@ -12,22 +10,11 @@ interface IProps {
   // handleSelect: (id: number) => void;
 }
 
-interface IState {
-  hovered: boolean;
-}
-
-class Card extends React.Component<IProps, IState> {
-  public constructor(props: IProps) {
-    super(props);
-    this.state = {
-      hovered: false,
-    };
-  }
-
+class Card extends React.Component<IProps> {
   public render() {
     const { title, url, onClickHandler, wasSelected } = this.props;
-    const { hovered } = this.state;
-    const heart = wasSelected || hovered ? redLike : blackLike;
+    const cx = `like ${wasSelected ? 'selected' : ''}`;
+
     return (
       <figure className="pokemon-card">
         <div className="preview">
@@ -45,18 +32,7 @@ class Card extends React.Component<IProps, IState> {
           </a>
         </h2>
         <button className="type green-btn">Grass</button>
-        <div className="like">
-          <a href="#">
-            <img
-              onClick={() => {}}
-              onMouseOver={() => this.setState({ hovered: true })}
-              onMouseOut={() => this.setState({ hovered: false })}
-              width="32"
-              height="auto"
-              alt="Like"
-            />
-          </a>
-        </div>
+        <div className={cx} />
       </figure>
     );
   }

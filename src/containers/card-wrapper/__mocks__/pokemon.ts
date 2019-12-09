@@ -1,5 +1,5 @@
-const MOCKED_POKEMON = [{
+// const MOCKED_POKEMON = [{
 
-}];
+// }];
 
-export default MOCKED_POKEMON;
+// export default MOCKED_POKEMON;

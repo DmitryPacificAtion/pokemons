@@ -1,18 +1,24 @@
 import React from 'react';
-import Header from "./header";
-import CardWrapper from "../components/card-wrapper/index";
+import Header from './header';
+import Card from './card';
+// import CardWrapper from '../components/card-wrapper/index';
 // import Spinner from "./spinner";
 // import './ColorVariables.scss';
-// import {connect} from "react-redux";
 
 class App extends React.PureComponent {
   public render() {
+    const mockedProps = {
+      wasSelected: false,
+      onClickHandler: () => console.log('Click item'),
+      title: 'Hi Poks',
+      url: './',
+    };
+
     return (
       <div className="l-wrapper">
         <Header />
-        <section>
-          <CardWrapper />
-        </section>
+        <Card {...mockedProps} />
+        <section>{/* <CardWrapper /> */}</section>
       </div>
     );
   }

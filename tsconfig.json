@@ -4,7 +4,7 @@
     "baseUrl": ".",
     "jsx": "react",
     "module": "esnext",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noImplicitThis": true,
     "noImplicitReturns": true,
     "noLib": false,
@@ -17,11 +17,8 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "watch": true,
+    "resolveJsonModule": true,
+    "watch": true
   },
-  "exclude": [
-    "./**/__tests__/*",
-    "./__tests__/**/*",
-    "./node_modules/**/*"
-  ],
+  "exclude": ["./**/__tests__/*", "./__tests__/**/*", "./node_modules/**/*"]
 }

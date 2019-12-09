@@ -1,5 +1,5 @@
-export const mapStateToProps = state => ({
-  selectedItems: state.selectedItems,
-  isLoading: state.isLoading,
-  pokemons: state.payload
-});
+// export const mapStateToProps = (state: any) => ({
+//   selectedItems: state.selectedItems,
+//   isLoading: state.isLoading,
+//   pokemons: state.payload
+// });
